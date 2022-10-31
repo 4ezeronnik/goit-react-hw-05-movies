@@ -1,12 +1,22 @@
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { fetchTrendingMovies } from "services/api"
 
-const KEY = '755b9c6082cc4d5d6e54f37544fe5f24';
-const BASE_URL = 'https://api.themoviedb.org/3/';
+export const Home = () => {
+    const [movies, setMovies] = useState([]);
 
-axios.defaults.baseURL = BASE_URL;
+    useEffect(() => {
+        fetchTrendingMovies().then(setMovies);
+    }, []);
 
-export const fetchTrendingMovies = async () => {
-    const response = await axios.get(`trending/all/day?api_key=${KEY}`);
-
-    return response.data.original_title;
-}
+    return (
+        <>
+            <ul>
+                {movies.length > 0 &&
+                    movies.map(({ name, title, id }) => (
+                        <li key={id}>
+                            <h2>{title ? title : name }</h2>
+                        </li>))}
+            </ul>
+        </>
+    );
+};
