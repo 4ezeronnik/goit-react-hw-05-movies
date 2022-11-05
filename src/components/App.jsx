@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 import { Home } from '../pages/Home/Home';
 import { Movies } from '../pages/Movies/Movies';
 import { MovieDetails } from '../pages/MovieDetails/MovieDetails';
@@ -9,12 +9,20 @@ import { Reviews } from './Reviews/Reviews';
 export const App = () => {
   return (
     <>
+       <div>
+        <nav>
+          <NavLink to="/">Home</NavLink>
+        <NavLink to="/movies">Movies</NavLink>
+        </nav>
+        </div>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={< Movies />} />
-          <Route path="/movies/:movieId" element={< MovieDetails />} />
-        <Route path="/movies/:movieId/cast" element={<Cast />} />
-        <Route path="/movies/:movieId/reviews" element={<Reviews />} />
+          <Route path="/movies/:movieId" element={< MovieDetails />}>
+        <Route path=":movieId/cast" element={<Cast />} />
+          <Route path=":movieId/reviews" element={<Reviews />} />
+          </Route>
           
       </Routes>
     </>
