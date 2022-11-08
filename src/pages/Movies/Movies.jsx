@@ -1,4 +1,4 @@
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'services/api';
 
@@ -8,16 +8,15 @@ export const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filterParam = searchParams.get('filter') ?? '';
 
-  useEffect(() => {
-    fetchSearchMovies().then(setMovies);
-  }, []);
+  // useEffect(() => {
+  //   fetchSearchMovies().then(setMovies);
+  // }, []);
+
+  fetchSearchMovies();
 
   const changeFilter = value => {
     setSearchParams(value !== "" ? { filter: value } : {});
   };
-  
-
-
 
     return (
         <>
