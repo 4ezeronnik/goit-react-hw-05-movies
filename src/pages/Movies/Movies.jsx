@@ -1,6 +1,6 @@
-import { useMemo, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-
+import { fetchSearchMovies } from 'services/api';
 
 export const Movies = () => {
     const location = useLocation();
@@ -8,7 +8,15 @@ export const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filterParam = searchParams.get('filter') ?? '';
 
-    
+  useEffect(() => {
+    fetchSearchMovies().then(setMovies);
+  }, []);
+
+  const changeFilter = value => {
+    setSearchParams(value !== "" ? { filter: value } : {});
+  };
+  
+
 
 
     return (
@@ -16,8 +24,8 @@ export const Movies = () => {
            <div>
       <input
         type="text"
-        value={value}
-        onChange={e => onChange(e.target.value)}
+        value={filterParam}
+        onChange={e => changeFilter(e.target.value)}
       />
     </div>
         </>
