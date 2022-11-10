@@ -8,11 +8,9 @@ export const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filterParam = searchParams.get('filter') ?? '';
 
-  // useEffect(() => {
-  //   fetchSearchMovies().then(setMovies);
-  // }, []);
-
-  fetchSearchMovies();
+  useEffect(() => {
+    fetchSearchMovies(searchParams).then(setMovies);
+  }, [searchParams]);
 
   const changeFilter = value => {
     setSearchParams(value !== "" ? { filter: value } : {});
