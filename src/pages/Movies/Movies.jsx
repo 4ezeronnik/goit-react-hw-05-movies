@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { fetchSearchMovies } from 'services/api';
+import { fetchSearchMovies } from 'services/api'
 
 export const Movies = () => {
     const location = useLocation();
@@ -18,13 +18,16 @@ export const Movies = () => {
 
     return (
         <>
-           <div>
+        <div>
+          <form>
       <input
         type="text"
         value={filterParam}
         onChange={e => changeFilter(e.target.value)}
       />
-        </div>
+      <button type="submit">Search</button>
+          </form>
+          </div>
         {movies.length > 0 && (
           <ul>
             {movies.map(movie => (
