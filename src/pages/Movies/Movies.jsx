@@ -8,18 +8,19 @@ export const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filterParam = searchParams.get('filter') ?? '';
 
-  useEffect(() => {
-    fetchSearchMovies(filterParam).then(setMovies);
-  }, [filterParam]);
-
   const changeFilter = value => {
     setSearchParams(value !== "" ? { filter: value } : {});
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetchSearchMovies(filterParam).then(setMovies);
   };
 
     return (
         <>
         <div>
-          <form>
+          <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={filterParam}
