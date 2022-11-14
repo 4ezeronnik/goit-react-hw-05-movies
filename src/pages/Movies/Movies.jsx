@@ -6,15 +6,16 @@ export const Movies = () => {
     const location = useLocation();
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    const filterParam = searchParams.get('filter') ?? '';
+    const filterParam = searchParams.get('query') ?? '';
 
-  const changeFilter = value => {
-    setSearchParams(value !== "" ? { filter: value } : {});
+  const changeQuery = value => {
+    setSearchParams(value !== "" ? { query: value } : {});
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     fetchSearchMovies(filterParam).then(setMovies);
+    
   };
 
     return (
@@ -24,7 +25,7 @@ export const Movies = () => {
       <input
         type="text"
         value={filterParam}
-        onChange={e => changeFilter(e.target.value)}
+        onChange={e => changeQuery(e.target.value)}
       />
       <button type="submit">Search</button>
           </form>
