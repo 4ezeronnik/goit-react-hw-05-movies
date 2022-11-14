@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'services/api'
 
@@ -6,7 +6,7 @@ export const Movies = () => {
     const location = useLocation();
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    const filterParam = searchParams.get('query') ?? '';
+    const queryParam = searchParams.get('query') ?? '';
 
   const changeQuery = value => {
     setSearchParams(value !== "" ? { query: value } : {});
@@ -14,9 +14,10 @@ export const Movies = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetchSearchMovies(filterParam).then(setMovies);
-    
+    fetchSearchMovies(queryParam).then(setMovies);
   };
+
+
 
     return (
         <>
@@ -24,7 +25,7 @@ export const Movies = () => {
           <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={filterParam}
+        value={queryParam}
         onChange={e => changeQuery(e.target.value)}
       />
       <button type="submit">Search</button>
