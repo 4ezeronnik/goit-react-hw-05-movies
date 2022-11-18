@@ -10,10 +10,8 @@ export const Movies = () => {
   const queryParam = searchParams.get('query');
   
   useEffect(() => {
-    if (queryParam === "") return;
-
+    if (queryParam === null) return;
     fetchSearchMovies(queryParam).then(setMovies);
-    fetchSearchMovies();
   }, [queryParam])
 
 
