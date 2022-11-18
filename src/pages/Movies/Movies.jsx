@@ -1,18 +1,18 @@
-import { useState, } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'services/api'
 
 export const Movies = () => {
     const location = useLocation();
     const [movies, setMovies] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const queryParam = searchParams.get('query');
-
+    const [searchParams, setSearchParams] = useSearchParams();
+    const queryParam = searchParams.get('query' ?? '');
 
 
   const handleSubmit = e => {
     e.preventDefault();
     setSearchParams({ 'query': e.target.elements[0].value })
+    console.log(e.target.elements[0].value);
      fetchSearchMovies(queryParam).then(setMovies);
   };
 
