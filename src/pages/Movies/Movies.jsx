@@ -5,17 +5,15 @@ import { fetchSearchMovies } from 'services/api'
 export const Movies = () => {
     const location = useLocation();
     const [movies, setMovies] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const queryParam = searchParams.get('query') ?? '';
-  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParam = searchParams.get('query');
 
-  const changeQuery = value => {
-    setSearchParams(value !== "" ? { query: value } : {});
-  };
+
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetchSearchMovies(queryParam).then(setMovies);
+    setSearchParams({ 'query': e.target.elements[0].value })
+     fetchSearchMovies(queryParam).then(setMovies);
   };
 
     return (
@@ -24,8 +22,8 @@ export const Movies = () => {
           <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={queryParam}
-        onChange={e => changeQuery(e.target.value)}
+       
+        onChange={e => (e.target.value)}
       />
       <button type="submit">Search</button>
           </form>
