@@ -1,19 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 
 export const MovieDetails = () => {
-    const { movieId } = useParams();
-    const { movie, setMovie } = useState(null);
+    const { id } = useParams();
+    const [movie, setMovie] = useState(null);
 
     useEffect(() => {
-        fetchMovieDetails(movieId);
-    }, [movieId]);
+        if (movie === null) return;
+
+        fetchMovieDetails(id).then(setMovie)
+    }, [id]);
+
 
 
     return (
         <>
-            MovieDetails
+            <div>
+                <h2>Movie {movie.title} - {id}
+                </h2>
+           </div>
         </>
     )
 }
