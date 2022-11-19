@@ -7,7 +7,7 @@ export const Movies = () => {
     const location = useLocation();
     const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryParam = searchParams.get('query');
+  const queryParam = searchParams.get("query");
   
   useEffect(() => {
     if (queryParam === null) return;
