@@ -6,7 +6,7 @@ export const MovieDetails = () => {
     const [movie, setMovie] = useState([]);
     const { movieId } = useParams();
 
-    const { title, vote_average, overview } = movie;
+    const { title, vote_average, overview, genres } = movie;
 
     useEffect(() => {
         if (!movieId) return;
@@ -23,7 +23,7 @@ export const MovieDetails = () => {
                 <h3>Overview</h3>
                 <p>{overview}</p>
                 <h3>Genres</h3>
-                
+
             </div>
         </>
     );
