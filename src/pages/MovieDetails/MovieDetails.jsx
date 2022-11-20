@@ -2,11 +2,11 @@ import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 
 export const MovieDetails = () => {
-    const { id } = useParams();
+    const { movieId } = useParams();
+    console.log(movieId);
 
-
-    fetchMovieDetails();
-
+    const movie = fetchMovieDetails(movieId);
+    
 
 
     return (
