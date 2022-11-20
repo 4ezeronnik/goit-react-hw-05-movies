@@ -5,7 +5,8 @@ import { fetchMovieDetails } from 'services/api';
 export const MovieDetails = () => {
     const [movie, setMovie] = useState([]);
     const { movieId } = useParams();
-    console.log(movieId);
+
+    const { title, vote_average, overview } = movie;
 
     useEffect(() => {
         if (!movieId) return;
@@ -14,9 +15,15 @@ export const MovieDetails = () => {
     
 
     return (
+     
         <>
             <div>
-                <h2>{movie.title}</h2>
+                <h2>{title}</h2>
+                <p>User Score: {Math.round(vote_average * 10)}% </p>
+                <h3>Overview</h3>
+                <p>{overview}</p>
+                <h3>Genres</h3>
+                
             </div>
         </>
     );
