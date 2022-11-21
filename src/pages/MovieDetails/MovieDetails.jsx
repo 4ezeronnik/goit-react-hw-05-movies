@@ -7,7 +7,6 @@ export const MovieDetails = () => {
     const { movieId } = useParams();
 
     const { title, vote_average, overview, genres } = movies;
-    console.log(JSON.stringify(genres));
     
 
     useEffect(() => {
