@@ -24,11 +24,11 @@ export const MovieDetails = () => {
                 <h3>Overview</h3>
                 <p>{overview}</p>
                 <h3>Genres</h3>
-                {/* {genres.map(genre => (
+                {genres && (genres.map(genre => (
                     <li key={genre.id}>
                   {genre.name}
               </li>
-            ))} */}
+            )))}
 
             </div>
         </>
