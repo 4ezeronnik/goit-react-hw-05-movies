@@ -16,8 +16,8 @@ export const Cast = () => {
                 {moviesCast && (
                     moviesCast.map(movieCast => 
                 <li key={movieCast.id}>
-                    {movieCast.name}
-                    {movieCast.character} 
+                   <p>{movieCast.name}</p> 
+                   <p>Character: {movieCast.character}</p> 
                     </li>
 
                 ))}
