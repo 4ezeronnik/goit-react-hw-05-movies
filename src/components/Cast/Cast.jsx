@@ -6,6 +6,8 @@ export const Cast = () => {
     const [moviesCast, setMoviesCast] = useState([]);
     const { movieId } = useParams();
 
+    const imageURL = 'https://image.tmdb.org/t/p/w500/';
+
     useEffect(() => {
     fetchMovieCast(movieId).then(setMoviesCast)
     }, [movieId]);
@@ -15,7 +17,8 @@ export const Cast = () => {
             <div>
                 {moviesCast && (
                     moviesCast.map(movieCast => 
-                <li key={movieCast.id}>
+                        <li key={movieCast.id}>
+                             <img src={`${imageURL}${movieCast.profile_path}`} alt={movieCast.name}></img>
                    <p>{movieCast.name}</p> 
                    <p>Character: {movieCast.character}</p> 
                     </li>
