@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 
 export const MovieDetails = () => {
@@ -28,7 +28,14 @@ export const MovieDetails = () => {
                     <li key={genre.id}>
                   {genre.name}
               </li>
-            )))}
+                )))}
+
+                <ul>
+                    <li>
+                        <Link to="cast">Cast</Link>
+                    </li>
+                </ul>
+                <Outlet />
 
             </div>
         </>
