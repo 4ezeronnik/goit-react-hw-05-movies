@@ -3,26 +3,24 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 export const Cast = () => {
-    const [movieCast, setMovieCast] = useState([]);
+    const [moviesCast, setMoviesCast] = useState([]);
     const { movieId } = useParams();
-   
-    fetchMovieCast(movieId);
 
-    console.log();
-
-    // useEffect(() => {
-    // fetchMovieCast(movieId).then(setMovieCast)
-    // }, [movieId]);
+    useEffect(() => {
+    fetchMovieCast(movieId).then(setMoviesCast)
+    }, [movieId]);
 
     return (
         <>
             <div>
-                {movieCast && (
-                    movieCast.map(movieCast => 
-                        <li>
-                           {movieCast.title} 
-                        </li>)
-                )}
+                {moviesCast && (
+                    moviesCast.map(movieCast => 
+                <li key={movieCast.id}>
+                    {movieCast.name}
+                    {movieCast.character} 
+                    </li>
+
+                ))}
            </div>
         </>
     );
