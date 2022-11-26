@@ -9,17 +9,22 @@ export const Reviews = () => {
     useEffect(() => {
         fetchMovieReviews(movieId).then(setReviews);
     }, [movieId]);
+    
+
     return (
+
         <>
-            {reviews ? (reviews.map(review => 
+            { reviews.length > 0 ? (reviews.map(review => 
                 <li key={review.id}>
                     <p>{review.author}</p>
                     <p>{review.content}</p>
                     
                 </li>))
                 :
-                <p>We don't have any revies for this movie.</p>
+                (<p>We don't have any reviews for this movie.</p>)
             }
+
+
         </>
     );
 };
