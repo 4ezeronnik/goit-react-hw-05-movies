@@ -18,7 +18,7 @@ export const Cast = () => {
                 {moviesCast && (
                     moviesCast.map(movieCast => 
                         <li key={movieCast.id}>
-                             <img src={`${imageURL}${movieCast.profile_path}`} alt={movieCast.name}></img>
+                             <img src={`${imageURL}${movieCast.profile_path}`} alt={movieCast.name} width="200px" height="300px"></img>
                    <p>{movieCast.name}</p> 
                    <p>Character: {movieCast.character}</p> 
                     </li>
