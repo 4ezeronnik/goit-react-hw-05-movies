@@ -12,7 +12,7 @@ export const Movies = () => {
   useEffect(() => {
     if (queryParam === null) return;
     if (queryParam === '') {
-      alert(`Sorry, we can't find the movie you searched`);
+      alert(`Please, enter the movie's name`);
       return;
     }
     fetchSearchMovies(queryParam).then(setMovies);
@@ -23,8 +23,11 @@ export const Movies = () => {
     e.preventDefault();
     const form = e.currentTarget;
     setSearchParams({ 'query': form.elements.query.value });
-  
-    form.reset();
+    if (movies.length === 0) {
+      alert(`Sorry, we can't find any movie with this name`);
+      return
+    };
+     form.reset();
   };
 
     return (
