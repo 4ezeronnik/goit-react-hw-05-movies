@@ -15,6 +15,7 @@ export const Movies = () => {
       alert(`Please, enter the movie's name`);
       return;
     }
+  
     fetchSearchMovies(queryParam).then(setMovies);
   }, [queryParam])
 
@@ -22,12 +23,12 @@ export const Movies = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    setSearchParams({ 'query': form.elements.query.value });
-    if (movies.length === 0) {
-      alert(`Sorry, we can't find any movie with this name`);
-      return
-    };
-     form.reset();
+    setSearchParams({ 'query': form.elements.query.value.trim() });
+    // if (movies.length === 0) {
+    //   alert(`Sorry, we can't find any movie with this name`);
+    //   return
+    // };
+    form.reset();
   };
 
     return (
