@@ -24,10 +24,6 @@ export const Movies = () => {
     e.preventDefault();
     const form = e.currentTarget;
     setSearchParams({ 'query': form.elements.query.value.trim() });
-    // if (movies.length === 0) {
-    //   alert(`Sorry, we can't find any movie with this name`);
-    //   return
-    // };
     form.reset();
   };
 
