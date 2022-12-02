@@ -9,23 +9,25 @@ export const Movies = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParam = searchParams.get("query" || '');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+  
+    setSearchParams({ 'query': form.elements.query.value.trim() });
+
+    form.reset();
+ 
+  };
+
   
   useEffect(() => {
     if (queryParam === null) return;
 
 
     fetchSearchMovies(queryParam).then(setMovies);
-  }, [queryParam])
 
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    setSearchParams({ 'query': form.elements.query.value.trim() });
-
-
-    form.reset();
-  };
+  }, [queryParam]);
 
     return (
         <>

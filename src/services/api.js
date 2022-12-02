@@ -17,7 +17,7 @@ export const fetchSearchMovies = async (name) => {
                 throw new Error(error.response.statusText);
             }
     });
-    
+    console.log(response.data.results);
     return response.data.results;
 };
 
@@ -33,6 +33,5 @@ export const fetchMovieCast = async (movieId) => {
 
 export const fetchMovieReviews = async (movieId) => {
     const response = await axios.get(`movie/${movieId}/reviews?api_key=${KEY}`);
-    console.log(response.data.results);
     return response.data.results;
 };
