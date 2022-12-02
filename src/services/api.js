@@ -11,12 +11,18 @@ export const fetchTrendingMovies = async () => {
 };
 
 export const fetchSearchMovies = async (name) => {
-    const response = await axios.get(`search/movie?api_key=${KEY}&query=${name}`);
+    const response = await axios.get(`search/movie?api_key=${KEY}&query=${name}`)
+    .catch(error => {
+            if (!error.response) {
+                throw new Error(error.response.statusText);
+            }
+    });
+    
     return response.data.results;
 };
 
 export const fetchMovieDetails = async (movieId) => {
-    const response = await axios.get(`movie/${movieId}?api_key=${KEY}`);
+    const response = await axios.get(`movie/${movieId}?api_key=${KEY}`)
     return response.data;
 };
 

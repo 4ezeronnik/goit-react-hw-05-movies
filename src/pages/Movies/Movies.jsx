@@ -4,18 +4,16 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'services/api'
 
 export const Movies = () => {
-    const location = useLocation();
-    const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  const [movies, setMovies] = useState([]);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParam = searchParams.get("query" || '');
   
   useEffect(() => {
     if (queryParam === null) return;
-    if (queryParam === '') {
-      alert(`Please, enter the movie's name`);
-      return;
-    }
-  
+
+
     fetchSearchMovies(queryParam).then(setMovies);
   }, [queryParam])
 
@@ -24,6 +22,8 @@ export const Movies = () => {
     e.preventDefault();
     const form = e.currentTarget;
     setSearchParams({ 'query': form.elements.query.value.trim() });
+
+
     form.reset();
   };
 
