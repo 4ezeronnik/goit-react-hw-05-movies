@@ -14,7 +14,11 @@ export const fetchSearchMovies = async (name) => {
     const response = await axios.get(`search/movie?api_key=${KEY}&query=${name}`)
     .catch(error => {
             if (!error.response) {
-                throw new Error(error.response.statusText);
+               console.log(error.response.data);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log(error.config);
             }
     });
     console.log(response.data.results);

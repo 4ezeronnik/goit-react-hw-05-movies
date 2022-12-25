@@ -13,6 +13,12 @@ export const Movies = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
+
+    if (movies.length === 0) {
+      alert('There is no movies');
+        form.reset();
+        return
+    }
   
     setSearchParams({ 'query': form.elements.query.value.trim() });
 
@@ -23,7 +29,6 @@ export const Movies = () => {
   
   useEffect(() => {
     if (queryParam === null) return;
-
 
     fetchSearchMovies(queryParam).then(setMovies);
 
