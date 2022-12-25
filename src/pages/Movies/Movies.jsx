@@ -13,13 +13,14 @@ export const Movies = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-  
+
     setSearchParams({ 'query': form.elements.query.value.trim() });
     if (movies.length === 0) {
       alert('Sorry, unfortunately we did not find this films')
       form.reset();
-      return;
-    }
+      return
+  }
+
 
     form.reset();
  
