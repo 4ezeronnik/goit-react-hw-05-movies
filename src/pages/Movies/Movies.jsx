@@ -24,11 +24,14 @@ export const Movies = () => {
     if (queryParam === null) return;
 
     fetchSearchMovies(queryParam).then(res => {
-          if (res.length === 0) {
-      alert('Sorry, unfortunately we did not find this films')
-      return
-  }
-    }).then(setMovies);
+      if (res.length === 0) {
+        alert('Sorry, unfortunately we did not find this films')
+        return
+      }
+      if (res.length > 0) {
+        setMovies(res)
+      }
+    });
 
        if (!queryParam) {
       alert('There is no movies');
