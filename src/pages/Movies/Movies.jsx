@@ -15,22 +15,20 @@ export const Movies = () => {
     const form = e.currentTarget;
 
     setSearchParams({ 'query': form.elements.query.value.trim() });
-    if (movies.length === 0) {
-      alert('Sorry, unfortunately we did not find this films')
-      form.reset();
-      return
-  }
-
 
     form.reset();
  
   };
-
   
   useEffect(() => {
     if (queryParam === null) return;
 
-    fetchSearchMovies(queryParam).then(setMovies);
+    fetchSearchMovies(queryParam).then(res => {
+          if (res.length === 0) {
+      alert('Sorry, unfortunately we did not find this films')
+      return
+  }
+    }).then(setMovies);
 
        if (!queryParam) {
       alert('There is no movies');
