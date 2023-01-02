@@ -7,6 +7,7 @@ axios.defaults.baseURL = BASE_URL;
 
 export const fetchTrendingMovies = async () => {
     const response = await axios.get(`trending/all/day?api_key=${KEY}`);
+    console.log(response.data.results);
     return response.data.results;
 };
 

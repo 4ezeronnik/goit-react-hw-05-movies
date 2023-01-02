@@ -23,13 +23,13 @@ export const Movies = () => {
   useEffect(() => {
     if (queryParam === null) return;
     if (!queryParam) {
-         alert('There is no movies');
+         alert('There are no movies');
         return
        }
 
     fetchSearchMovies(queryParam).then(res => {
       if (res.length === 0) {
-        alert('Sorry, unfortunately we did not find this films');
+        alert('Sorry, unfortunately we did not find these films');
         return
       }
       if (res.length > 0) {
