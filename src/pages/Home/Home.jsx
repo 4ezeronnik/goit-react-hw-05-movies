@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 export const Home = () => {
     const [movies, setMovies] = useState([]);
-    const location = useLocation();
 
     useEffect(() => {
         fetchTrendingMovies().then(setMovies);
@@ -17,7 +16,7 @@ export const Home = () => {
                 {movies.length > 0 &&
                     movies.map(({ name, title, id }) => (
                         <li key={id}>
-                            <Link to={`/movies/${id}`} state={{ from: location }}>
+                            <Link to={`/movies/${id}`}>
                                 <h2>{title ? title : name}</h2>
                                 </Link>
                         </li>))}
