@@ -19,7 +19,7 @@ export const MovieDetails = () => {
         <>
             <div>
                 <h2>{title}</h2>
-                <img src={`${imageURL}${poster_path}`} alt={title}></img>
+                <img src={`${imageURL}${poster_path}`} alt={title}/>
                 <p>User Score: {Math.round(vote_average * 10)}% </p>
                 <h3>Overview</h3>
                 <p>{overview}</p>
