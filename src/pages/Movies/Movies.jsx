@@ -30,8 +30,8 @@ export const Movies = () => {
 
     fetchSearchMovies(queryParam).then(res => {
       if (res.length === 0) {
-         setSearchParams({});
         alert('Sorry, unfortunately we did not find these films');
+         setSearchParams({});
       }
       if (res.length > 0) {
         setMovies(res)
