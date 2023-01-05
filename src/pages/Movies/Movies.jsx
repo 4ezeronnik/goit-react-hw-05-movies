@@ -8,7 +8,7 @@ export const Movies = () => {
   const [movies, setMovies] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryParam = searchParams.get("query" || '');
+  const queryParam = searchParams.get("query" ?? '');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -23,14 +23,15 @@ export const Movies = () => {
   useEffect(() => {
     if (queryParam === null) return;
     if (!queryParam) {
-         alert('There are no movies');
+      alert('There are no movies');
+      setSearchParams({});
         return
        }
 
     fetchSearchMovies(queryParam).then(res => {
       if (res.length === 0) {
+         setSearchParams({});
         alert('Sorry, unfortunately we did not find these films');
-        return
       }
       if (res.length > 0) {
         setMovies(res)
@@ -38,7 +39,7 @@ export const Movies = () => {
     });
 
 
-  }, [queryParam]);
+  }, [queryParam, setSearchParams]);
 
     return (
         <>
