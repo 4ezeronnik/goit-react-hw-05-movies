@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
+import { ArrowLeft } from 'react-feather';
 
 export const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
@@ -20,7 +21,11 @@ export const MovieDetails = () => {
     return (
         <>
             <div>
-                <Link to={backLinkHref}>Go back</Link>
+                
+                <Link to={backLinkHref}>
+                    <ArrowLeft size={20}/>
+                    Go back
+                </Link>
                 <h2>{title}</h2>
                 <img src={`${imageURL}${poster_path}`} alt={title}/>
                 <p>User Score: {Math.round(vote_average * 10)}% </p>
