@@ -15,7 +15,7 @@ export const Cast = () => {
     return (
         <>
             <div>
-                {moviesCast && (
+                {moviesCast.length > 0 ? (
                     moviesCast.map(movieCast => 
                         <li key={movieCast.id}>
                              <img src={`${imageURL}${movieCast.profile_path}`} alt={movieCast.name} width="255px" height="375px"></img>
@@ -23,7 +23,11 @@ export const Cast = () => {
                    <p>Character: {movieCast.character}</p> 
                     </li>
 
-                ))}
+                    ))
+                    :
+
+              (<p>We don't have any information about cast for this movie.</p>)
+                }
            </div>
         </>
     );
