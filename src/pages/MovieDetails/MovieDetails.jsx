@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 
 export const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
     const { movieId } = useParams();
+    const location = useLocation();
+    const backLinkHref = location.state?.from ?? '/movies'
 
     const { title, vote_average, overview, genres, poster_path } = movies;
     const imageURL = 'https://image.tmdb.org/t/p/w500/';
@@ -18,6 +20,7 @@ export const MovieDetails = () => {
     return (
         <>
             <div>
+                <Link to={backLinkHref}>Back to movies</Link>
                 <h2>{title}</h2>
                 <img src={`${imageURL}${poster_path}`} alt={title}/>
                 <p>User Score: {Math.round(vote_average * 10)}% </p>
