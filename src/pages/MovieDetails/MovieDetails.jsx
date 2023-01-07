@@ -6,7 +6,7 @@ export const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
     const { movieId } = useParams();
     const location = useLocation();
-    const backLinkHref = location.state?.from ?? '/movies'
+    const backLinkHref = location.state?.from ?? '/'
 
     const { title, vote_average, overview, genres, poster_path } = movies;
     const imageURL = 'https://image.tmdb.org/t/p/w500/';
@@ -20,7 +20,7 @@ export const MovieDetails = () => {
     return (
         <>
             <div>
-                <Link to={backLinkHref}>Back to movies</Link>
+                <Link to={backLinkHref}>Go back</Link>
                 <h2>{title}</h2>
                 <img src={`${imageURL}${poster_path}`} alt={title}/>
                 <p>User Score: {Math.round(vote_average * 10)}% </p>
