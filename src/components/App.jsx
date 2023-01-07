@@ -4,6 +4,7 @@ import { Movies } from '../pages/Movies/Movies';
 import { MovieDetails } from '../pages/MovieDetails/MovieDetails';
 import { Cast } from '../components/Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
+import { NotFound } from './NotFound/NotFound';
 
 
 export const App = () => {
@@ -24,9 +25,7 @@ export const App = () => {
         <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-         <Route path="*" element={<Home />} />
-        
-          
+          <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
