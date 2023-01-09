@@ -3,7 +3,7 @@ import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 import { ArrowLeft } from 'react-feather';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
     const { movieId } = useParams();
     const location = useLocation();
@@ -53,3 +53,5 @@ export const MovieDetails = () => {
         </>
     );
 };
+
+export default MovieDetails;
