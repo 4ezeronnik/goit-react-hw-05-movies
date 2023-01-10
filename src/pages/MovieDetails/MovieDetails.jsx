@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 import { ArrowLeft } from 'react-feather';
+import pendingImage from '../../pictures/pending.png';
 
 const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
@@ -27,7 +28,7 @@ const MovieDetails = () => {
                     Go back
                 </Link>
                 <h2>{title}</h2>
-                <img src={`${imageURL}${poster_path}`} alt={title}/>
+                <img src={poster_path ? (`${imageURL}${poster_path}`) : pendingImage} alt={title}/>
                 <p>User Score: { Math.round(vote_average * 10) }% </p>
                 <h3>Overview</h3>
                 <p>{overview}</p>
