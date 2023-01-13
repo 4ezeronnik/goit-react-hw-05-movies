@@ -1,6 +1,7 @@
 import { fetchMovieCast } from "services/api";
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import pendingImage from '../../pictures/pending.png';
 
 const Cast = () => {
     const [moviesCast, setMoviesCast] = useState([]);
@@ -18,7 +19,7 @@ const Cast = () => {
                 {moviesCast.length > 0 ? (
                     moviesCast.map(movieCast => 
                         <li key={movieCast.id}>
-                             <img src={`${imageURL}${movieCast.profile_path}`} alt={movieCast.name} width="255px" height="375px"></img>
+                             <img src={movieCast.profile_path ? (`${imageURL}${movieCast.profile_path}`) : pendingImage} alt={movieCast.name} width="255px" height="375px"></img>
                    <p>{movieCast.name}</p> 
                    <p>Character: {movieCast.character}</p> 
                     </li>
