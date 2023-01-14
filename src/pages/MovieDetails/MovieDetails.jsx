@@ -6,6 +6,8 @@ import pendingImage from '../../pictures/pending.png';
 
 const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
+    const [status, setStatus] = useState('pending');
+
     const { movieId } = useParams();
     const location = useLocation();
     const backLinkHref = location.state?.from ?? '/'
