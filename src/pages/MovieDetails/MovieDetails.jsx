@@ -6,18 +6,19 @@ import pendingImage from '../../pictures/pending.png';
 
 const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
-    const [status, setStatus] = useState('pending');
+    const [status, setStatus] = useState('idle');
 
     const { movieId } = useParams();
     const location = useLocation();
-    const backLinkHref = location.state?.from ?? '/'
+    const backLinkHref = location.state?.from ?? '/';
 
     const { title, vote_average, overview, genres, poster_path } = movies;
     const imageURL = 'https://image.tmdb.org/t/p/w500/';
 
     useEffect(() => {
         if (!movieId) return;
-        fetchMovieDetails(movieId).then(setMovies, setStatus('resolved')).catch(console.error);     
+        setStatus('pending');
+        fetchMovieDetails(movieId).then(setMovies, setStatus('resolved')).catch(error => {console.log(error) }, setStatus('rejected'));     
     }, [movieId]);
     
     return (
@@ -52,7 +53,8 @@ const MovieDetails = () => {
                 </ul>
 
                 <Outlet />
-            </div>) }
+            </div>)}
+            {status === 'rejected' && (<div>Sorry, there is nothing</div>)}
         </>
     );
 };

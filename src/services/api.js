@@ -22,12 +22,17 @@ export const fetchSearchMovies = async (name) => {
                 console.log(error.config);
             }
     });
-    console.log(response.data.results);
     return response.data.results;
 };
 
-export const fetchMovieDetails = async (id) => {
-    const response = await axios.get(`movie/${id}?api_key=${KEY}`)
+export const fetchMovieDetails = async (movieId) => {
+    const response = await axios.get(`movie/${movieId}?api_key=${KEY}`)
+   .catch(error => {
+               if (!error.response) {
+                   throw new Error(error.response.statusText);
+               }
+           });
+    console.log(response.data);
     return response.data;
 };
 
