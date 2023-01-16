@@ -18,7 +18,12 @@ const MovieDetails = () => {
     useEffect(() => {
         if (!movieId) return;
         setStatus('pending');
-        fetchMovieDetails(movieId).then(setMovies, setStatus('resolved')).catch(error => {console.log(error)}, setStatus('rejected'));     
+        try {
+            fetchMovieDetails(movieId)
+            .then(setMovies, setStatus('resolved'))
+        } catch { setStatus('rejected')
+        }
+          
     }, [movieId]);
     
     return (
