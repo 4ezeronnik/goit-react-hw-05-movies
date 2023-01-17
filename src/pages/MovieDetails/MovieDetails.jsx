@@ -16,13 +16,20 @@ const MovieDetails = () => {
     const imageURL = 'https://image.tmdb.org/t/p/w500/';
 
     useEffect(() => {
-        if (!movieId) return;
+           if (!movieId) return;
         setStatus('pending');
-        try {
-            fetchMovieDetails(movieId)
-            .then(setMovies, setStatus('resolved'))
-        } catch { setStatus('rejected')
+        const fetchFilmDetails = async () => {
+            try {
+                const fetchFilms = await fetchMovieDetails(movieId);
+                setMovies(fetchFilms);
+                 setStatus('resolved');
+            } catch {
+            setStatus('rejected')
+            }
+       
         }
+          
+        fetchFilmDetails();
           
     }, [movieId]);
     
