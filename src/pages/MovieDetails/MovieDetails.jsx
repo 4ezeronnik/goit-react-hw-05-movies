@@ -17,18 +17,16 @@ const MovieDetails = () => {
 
     useEffect(() => {
            if (!movieId) return;
-        setStatus('pending');
+                setStatus('pending');
         const fetchFilmDetails = async () => {
             try {
                 const fetchFilms = await fetchMovieDetails(movieId);
                 setMovies(fetchFilms);
-                 setStatus('resolved');
+                setStatus('resolved');
             } catch {
-            setStatus('rejected')
-            }
-       
-        }
-          
+                setStatus('rejected')
+            };
+        };
         fetchFilmDetails();
           
     }, [movieId]);
