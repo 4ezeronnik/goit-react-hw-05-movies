@@ -3,6 +3,7 @@ import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
 import { ArrowLeft } from 'react-feather';
 import pendingImage from '../../pictures/pending.png';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
@@ -34,7 +35,7 @@ const MovieDetails = () => {
     return (
         <>
             
-            {status === 'pending' && (<div>Loading</div>)}
+            {status === 'pending' && (<ClipLoader/>)}
             {status === 'resolved' && (<div>
                 <Link to={backLinkHref}>
                     <ArrowLeft size={20} />
