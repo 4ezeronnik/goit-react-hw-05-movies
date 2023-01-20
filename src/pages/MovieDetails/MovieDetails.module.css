@@ -1,0 +1,21 @@
+.picture {
+  display: block;
+  width: 250px;
+  height: 375px;
+}
+
+.card {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.card > .content {
+  margin-left: 15px;
+  padding: 0;
+}

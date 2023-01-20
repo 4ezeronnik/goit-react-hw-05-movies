@@ -6,8 +6,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 export const SharedLayout = () => {
     return (
-      <div className={styles.container}>
-        <nav>
+      <div>
+        <nav className={styles.sharedLayoutContainer}>
           <NavLink to="/" className={styles.link}>Home</NavLink>
           <NavLink to="/movies">Movies</NavLink>
         </nav>

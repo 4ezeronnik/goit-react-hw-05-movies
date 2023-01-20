@@ -4,6 +4,7 @@ import { fetchMovieDetails } from 'services/api';
 import { ArrowLeft } from 'react-feather';
 import pendingImage from '../../pictures/pending.png';
 import ClipLoader from "react-spinners/ClipLoader";
+import styles from './MovieDetails.module.css';
 
 const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
@@ -34,15 +35,16 @@ const MovieDetails = () => {
     
     return (
         <>
-            
             {status === 'pending' && (<ClipLoader/>)}
             {status === 'resolved' && (<div>
                 <Link to={backLinkHref}>
                     <ArrowLeft size={20} />
                     Go back
                 </Link>
+                <div className={styles.card}>
+                    <img src={poster_path ? (`${imageURL}${poster_path}`) : pendingImage} alt={title} className={styles.picture} />
+                    <div class={styles.content}>
                 <h2>{title}</h2>
-                <img src={poster_path ? (`${imageURL}${poster_path}`) : pendingImage} alt={title} width="100px" height="150px"/>
                 <p>User Score: {Math.round(vote_average * 10)}% </p>
                 <h3>Overview</h3>
                 <p>{overview}</p>
@@ -51,7 +53,10 @@ const MovieDetails = () => {
                     <li key={genre.id}>
                         {genre.name}
                     </li>
+                    
                 )))}
+                </div>
+                </div>
 
                 <ul>
                     <p>Additional information</p>
@@ -61,11 +66,12 @@ const MovieDetails = () => {
                     <li>
                         <Link to="reviews">Reviews</Link>
                     </li>
-                </ul>
+                    </ul>
+                  
 
                 <Outlet />
             </div>)}
-            {status === 'rejected' && (<div>Sorry, there is nothing</div>)}
+                {status === 'rejected' && (<div>Sorry, there is nothing</div>)}
         </>
     );
 };
