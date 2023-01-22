@@ -72,7 +72,7 @@ const MovieDetails = () => {
 
                 <Outlet />
             </div>)}
-                {status === 'rejected' && (<NotFound />)}
+                {status === 'rejected' && <NotFound />}
         </>
     );
 };
