@@ -6,42 +6,26 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 axios.defaults.baseURL = BASE_URL;
 
 export const fetchTrendingMovies = async () => {
-    const response = await axios.get(`trending/movie/day?api_key=${KEY}`);
-    console.log(response.data.results);
-    return response.data.results;
+    const { data } = await axios.get(`trending/movie/day?api_key=${KEY}`);
+    return data.results;
 };
 
 export const fetchSearchMovies = async (name) => {
-    const response = await axios.get(`search/movie?api_key=${KEY}&query=${name}`)
-    .catch(error => {
-            if (!error.response) {
-               console.log(error.response.data);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log(error.config);
-            }
-    });
-    return response.data.results;
+    const { data } = await axios.get(`search/movie?api_key=${KEY}&query=${name}`)
+    return data.results;
 };
 
 export const fetchMovieDetails = async (movieId) => {
-    const response = await axios.get(`movie/${movieId}?api_key=${KEY}`)
-   .catch(error => {
-               if (!error.response) {
-                   throw new Error(error.response.statusText);
-               }
-           });
-    console.log(response.data);
-    return response.data;
+    const { data } = await axios.get(`movie/${movieId}?api_key=${KEY}`)
+    return data;
 };
 
 export const fetchMovieCast = async (movieId) => {
-    const response = await axios.get(`movie/${movieId}/credits?api_key=${KEY}`);
-    return response.data.cast;
+    const { data } = await axios.get(`movie/${movieId}/credits?api_key=${KEY}`);
+    return data.cast;
 };
 
 export const fetchMovieReviews = async (movieId) => {
-    const response = await axios.get(`movie/${movieId}/reviews?api_key=${KEY}`);
-    return response.data.results;
+    const { data } = await axios.get(`movie/${movieId}/reviews?api_key=${KEY}`);
+    return data.results;
 };

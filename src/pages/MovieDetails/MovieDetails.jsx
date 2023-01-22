@@ -4,12 +4,13 @@ import { fetchMovieDetails } from 'services/api';
 import { ArrowLeft } from 'react-feather';
 import pendingImage from '../../pictures/pending.png';
 import ClipLoader from "react-spinners/ClipLoader";
-import NotFound from '../../components/NotFound/NotFound'
+import NotFound from '../../components/NotFound/NotFound';
+import STATUS from 'services/status-state-machine';
 import styles from './MovieDetails.module.css';
 
 const MovieDetails = () => {
     const [movies, setMovies] = useState([]);
-    const [status, setStatus] = useState('idle');
+    const [status, setStatus] = useState(STATUS.IDLE);
 
     const { movieId } = useParams();
     const location = useLocation();
@@ -20,14 +21,14 @@ const MovieDetails = () => {
 
     useEffect(() => {
            if (!movieId) return;
-                setStatus('pending');
+                setStatus(STATUS.PENDING);
         const fetchFilmDetails = async () => {
             try {
                 const fetchFilms = await fetchMovieDetails(movieId);
                 setMovies(fetchFilms);
-                setStatus('resolved');
+                setStatus(STATUS.RESOLVED);
             } catch {
-                setStatus('rejected')
+                setStatus(STATUS.REJECTED)
             };
         };
         fetchFilmDetails();
@@ -36,8 +37,8 @@ const MovieDetails = () => {
     
     return (
         <>
-            {status === 'pending' && (<ClipLoader/>)}
-            {status === 'resolved' && (<div>
+            {status === STATUS.PENDING && (<ClipLoader/>)}
+            {status === STATUS.RESOLVED && (<div>
                 <Link to={backLinkHref}>
                     <ArrowLeft size={20} />
                     Go back
@@ -72,7 +73,7 @@ const MovieDetails = () => {
 
                 <Outlet />
             </div>)}
-                {status === 'rejected' && <NotFound />}
+                {status === STATUS.REJECTED && <NotFound />}
         </>
     );
 };

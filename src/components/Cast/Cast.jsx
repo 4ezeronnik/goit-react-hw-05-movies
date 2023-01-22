@@ -2,20 +2,37 @@ import { fetchMovieCast } from "services/api";
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import pendingImage from '../../pictures/pending.png';
+import STATUS from "services/status-state-machine";
+import { ClipLoader } from "react-spinners";
+import NotFound from "components/NotFound/NotFound";
 
 const Cast = () => {
     const [moviesCast, setMoviesCast] = useState([]);
+    const [status, setStatus] = useState(STATUS.IDLE);
     const { movieId } = useParams();
 
     const imageURL = 'https://image.tmdb.org/t/p/w500/';
 
     useEffect(() => {
-    fetchMovieCast(movieId).then(setMoviesCast)
+        if (!movieId) return;
+        setStatus(STATUS.PENDING);
+        const fetchFilmDetails = async () => {
+            try {
+                const fetchFilms = await fetchMovieCast(movieId);
+                setMoviesCast(fetchFilms);
+                setStatus(STATUS.RESOLVED);
+            } catch {
+                setStatus(STATUS.REJECTED)
+            };
+        };
+        fetchFilmDetails();
+  
     }, [movieId]);
 
     return (
         <>
-            <div>
+            {status === STATUS.PENDING && <ClipLoader />}
+            {status === STATUS.RESOLVED && (<div>
                 {moviesCast.length > 0 ? (
                     moviesCast.map(movieCast => 
                         <li key={movieCast.id}>
@@ -29,7 +46,9 @@ const Cast = () => {
 
               (<p>We don't have any information about cast for this movie.</p>)
                 }
-           </div>
+            </div>)}
+            {status === STATUS.REJECTED && <NotFound/>}
+            
         </>
     );
 };
