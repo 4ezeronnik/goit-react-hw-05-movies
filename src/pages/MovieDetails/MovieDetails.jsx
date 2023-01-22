@@ -4,6 +4,7 @@ import { fetchMovieDetails } from 'services/api';
 import { ArrowLeft } from 'react-feather';
 import pendingImage from '../../pictures/pending.png';
 import ClipLoader from "react-spinners/ClipLoader";
+import NotFound from '../../components/NotFound/NotFound'
 import styles from './MovieDetails.module.css';
 
 const MovieDetails = () => {
@@ -71,7 +72,7 @@ const MovieDetails = () => {
 
                 <Outlet />
             </div>)}
-                {status === 'rejected' && (<div>Sorry, there is nothing</div>)}
+                {status === 'rejected' && (<NotFound />)}
         </>
     );
 };
