@@ -1,4 +1,11 @@
 .sharedLayoutContainer {
-  padding-top: 40px;
+  padding-top: 20px;
   padding-left: 40px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  font-size: large;
+  font-weight: bold;
 }

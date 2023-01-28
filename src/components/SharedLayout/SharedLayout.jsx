@@ -8,7 +8,7 @@ export const SharedLayout = () => {
     return (
       <div>
         <nav className={styles.sharedLayoutContainer}>
-          <NavLink to="/" className={styles.link}>Home</NavLink>
+          <NavLink to="/" >Home</NavLink>
           <NavLink to="/movies">Movies</NavLink>
         </nav>
         
