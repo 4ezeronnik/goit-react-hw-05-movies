@@ -40,7 +40,7 @@ const MovieDetails = () => {
             {status === STATUS.PENDING && (<ClipLoader/>)}
             {status === STATUS.RESOLVED && (<div>
                 <Link to={backLinkHref}>
-                    <ArrowLeft size={20} />
+                    <ArrowLeft size={12} />
                     Go back
                 </Link>
                 <div className={styles.card}>
