@@ -12,4 +12,9 @@
 
 .Home {
   margin-right: 10px;
+  text-decoration: none;
+}
+
+.Home:hover {
+  text-decoration: underline;
 }
