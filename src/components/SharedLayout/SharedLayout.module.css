@@ -10,11 +10,16 @@
   font-weight: bold;
 }
 
-.Home {
+.link {
   margin-right: 10px;
   text-decoration: none;
+  color: black;
 }
 
-.Home:hover {
+.link:active {
+  color: red;
+}
+
+.link:hover {
   text-decoration: underline;
 }

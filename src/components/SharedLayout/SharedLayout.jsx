@@ -8,8 +8,8 @@ export const SharedLayout = () => {
     return (
       <div>
         <nav className={styles.sharedLayoutContainer}>
-          <NavLink to="/" className={styles.Home}  >Home</NavLink>
-          <NavLink to="/movies" className={styles.Movies}>Movies</NavLink>
+          <NavLink to="/" className={styles.link}  >Home</NavLink>
+          <NavLink to="/movies" className={styles.link}>Movies</NavLink>
         </nav>
         
             <Suspense fallback={<ClipLoader />}>
