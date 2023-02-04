@@ -1,11 +1,15 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { fetchSearchMovies } from 'services/api'
+import { fetchSearchMovies } from 'services/api';
+import ClipLoader from "react-spinners/ClipLoader";
+import NotFound from '../../components/NotFound/NotFound';
+import STATUS from 'services/status-state-machine';
 
 const Movies = () => {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
+  const [status, setStatus] = useState(STATUS.IDLE);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParam = searchParams.get("query" ?? '');
@@ -24,6 +28,7 @@ const Movies = () => {
     if (queryParam === null) return;
     if (!queryParam) {
       alert('There are no movies');
+     
       setSearchParams({});
         return
        }
@@ -34,6 +39,7 @@ const Movies = () => {
          setSearchParams({});
       }
       if (res.length > 0) {
+        setStatus(STATUS.RESOLVED)
         setMovies(res)
       }
     });
@@ -42,7 +48,8 @@ const Movies = () => {
   }, [queryParam, setSearchParams]);
 
     return (
-        <>
+      <>
+        
         <div>
           <form onSubmit={handleSubmit}>
       <input

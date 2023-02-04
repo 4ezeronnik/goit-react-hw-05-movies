@@ -45,7 +45,7 @@ const MovieDetails = () => {
                 </Link>
                 <div className={styles.card}>
                     <img src={poster_path ? (`${imageURL}${poster_path}`) : pendingImage} alt={title} className={styles.picture} />
-                    <div class={styles.content}>
+                    <div className={styles.content}>
                 <h2>{title}</h2>
                 <p>User Score: {Math.round(vote_average * 10)}% </p>
                 <h3>Overview</h3>
